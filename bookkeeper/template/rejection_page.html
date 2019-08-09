@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Pending Approvals</title>
+    {% load static %}
+    {% load i18n staticfiles %}
+    <!-- Fontfaces CSS-->
+    <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css'%}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'vendor/animsition/animsition.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/wow/animate.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/slick/slick.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/select2/select2.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/data-tables/datatables.min.css'%}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/data-tables/dataTables.bootstrap4.min.css'%}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/theme.css'%}" rel="stylesheet" media="all">
+    <script type="text/javascript">
+         var USERS_LIST_JSON_URL = '{% url "specialsearch" %}';
+         var NOTIFICATIONS = '{% url "notifications" %}';
+         var USERNAME = '{% url "getname" %}';
+
+    </script>
+
+
+
+
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.html">
+                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>Assets</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                 <li>
+                                <a href="{% url 'main'%}">
+                                    <i class="far fas fa-table"></i>Show Assets</a>
+                                 </li>
+
+                                 <li>
+                                <a href="{% url 'add'%}">
+                                <i class="far fa-check-square"></i>Add Assets</a>
+                                 </li>
+
+                                  <li>
+                                <a href="{% url 'xls_Upload'%}">
+                                <i class="far fa-check-square"></i>Bulk Add Assets</a>
+                                 </li>
+
+
+                                 <li>
+                                <a href="{% url 'pending'%}">
+                                <i class="far fa-check-square"></i>Approval/Rejection List</a>
+                                 </li>
+
+                            </ul>
+                 </li>
+                          <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Location</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                 <li>
+                                    <a href="{% url 'location'%}">
+                                    <i class="fas fa-map-marker-alt"></i>Add Locations</a>
+                                </li>
+
+                                 <li>
+                                <a href="{% url 'Llist'%}">
+                                <i class="far fa-check-square"></i>View Locations</a>
+                                 </li>
+
+                            </ul>
+                          </li>
+
+
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+
+                 <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>Assets</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                 <li>
+                                <a href="{% url 'main'%}">
+                                    <i class="far fas fa-table"></i>Show Assets</a>
+                                 </li>
+
+                                 <li>
+                                <a href="{% url 'add'%}">
+                                <i class="far fa-check-square"></i>Add Assets</a>
+                                 </li>
+
+                                   <li>
+                                <a href="{% url 'xls_Upload'%}">
+                                <i class="far fa-check-square"></i>Bulk Add Assets</a>
+                                 </li>
+
+                                 <li>
+                                <a href="{% url 'pending'%}">
+                                <i class="far fa-check-square"></i>Approval/Rejection List</a>
+                                 </li>
+
+                            </ul>
+                 </li>
+                          <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Location</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                 <li>
+                                    <a href="{% url 'location'%}">
+                                    <i class="fas fa-map-marker-alt"></i>Add Locations</a>
+                                </li>
+
+                                 <li>
+                                <a href="{% url 'Llist'%}">
+                                <i class="far fa-check-square"></i>View Locations</a>
+                                 </li>
+
+                            </ul>
+                       </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                                {% csrf_token %}
+                                <input class="au-input au-input--xl" type="text" id="txtSearch"  placeholder="Search for through table" />
+                                </button>
+                            <div class="header-button">
+                                 <div class="noti-wrap">
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-comment-more"></i>
+                                        <span class="quantity" id="num">1</span>
+                                        <div class="mess-dropdown js-dropdown" id="notificationinfo">
+                                            <div class="mess__title">
+                                                <p>You have 2 news message</p>
+                                            </div>
+                                    </div>
+                                </div>
+                                </div>
+                                 <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#" id="name">Options</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>Settings</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="{% url 'logout'%}">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                    <!---<div class="card">-->
+                        <div class="table-responsive table--no-card m-b-30">
+                            <table class="table table-borderless table-striped table-earning">
+                        <thead>
+                            <tr>
+                                <th>Buy date</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Rejection reason</th>
+                                <th>Barcode</th>
+                                <th>Serial</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchBody">
+                         {% for asset in assets %}
+                        <tr>
+                            <td>{{ asset.acquisition_date }}</td>
+                            <td>{{ asset.asset_name }}</td>
+                            <td>{{ asset.description }}</td>
+                            <td>{{ asset.rejection_reason }}</td>
+                            <td>{{ asset.asset_barcode }}</td>
+                            <td>{{ asset.asset_serial_number }}</td>
+                            <td ><a href="{% url 'modify' asset.asset_id %}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+
+
+                    {% if is_paginated %}
+                        <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                    </ul>
+                    {% endif %}
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery-3.2.1.min.js' %}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{% static 'vendor/bootstrap-4.1/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+    <!-- Vendor JS       -->
+    <script src="{% static 'vendor/slick/slick.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+    <script src="{% static 'vendor/animsition/animsition.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'vendor/counter-up/jquery.counterup.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/circle-progress/circle-progress.min.js' %}"></script>
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'vendor/chartjs/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js' %}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/rejected_search.js' %}"></script>
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <script src="{% static 'js/getname.js' %}"></script>
+
+
+
+</body>
+
+</html>
+<!-- end document-->
