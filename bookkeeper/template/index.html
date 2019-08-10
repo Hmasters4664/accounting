@@ -18,6 +18,7 @@
     <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
     <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css'%}" rel="stylesheet" media="all">
     <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css'%}" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/data-tables/datatables.css'%}"/>
 
     <!-- Bootstrap CSS-->
     <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
@@ -35,10 +36,10 @@
 
     <!-- Main CSS-->
     <link href="{% static 'css/theme.css'%}" rel="stylesheet" media="all">
+
     <script type="text/javascript">
-         var USERS_LIST_JSON_URL = '{% url "search" %}';
-         var NOTIFICATIONS = '{% url "notifications" %}';
-         var USERNAME = '{% url "getname" %}';
+        var USERS_LIST_JSON_URL = '{% url "BookList" %}';
+
     </script>
 
 
@@ -74,23 +75,23 @@
                                 <i class="fas fa-desktop"></i>Assets</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                  <li>
-                                <a href="{% url 'main'%}">
+                                <a href="#">
                                     <i class="far fas fa-table"></i>Show Assets</a>
                                  </li>
 
                                  <li>
-                                <a href="{% url 'add'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>Add Assets</a>
                                  </li>
 
                                   <li>
-                                <a href="{% url 'xls_Upload'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>Bulk Add Assets</a>
                                  </li>
 
 
                                 <li>
-                                <a href="{% url 'pending'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>Approval/Rejection List</a>
                                  </li>
 
@@ -101,12 +102,12 @@
                                 <i class="fas fa-copy"></i>Location</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                  <li>
-                                    <a href="{% url 'location'%}">
+                                    <a href="#">
                                     <i class="fas fa-map-marker-alt"></i>Add Locations</a>
                                 </li>
 
                                  <li>
-                                <a href="{% url 'Llist'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>View Locations</a>
                                  </li>
 
@@ -137,22 +138,22 @@
                                 <i class="fas fa-desktop"></i>Assets</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                  <li>
-                                <a href="{% url 'main'%}">
+                                <a href="#">
                                     <i class="far fas fa-table"></i>Show Assets</a>
                                  </li>
 
                                  <li>
-                                <a href="{% url 'add'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>Add Assets</a>
                                  </li>
 
                                   <li>
-                                <a href="{% url 'xls_Upload'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>Bulk Add Assets</a>
                                  </li>
 
                                  <li>
-                                <a href="{% url 'pending'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>Approval/Rejection List</a>
                                  </li>
 
@@ -163,12 +164,12 @@
                                 <i class="fas fa-copy"></i>Location</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                  <li>
-                                    <a href="{% url 'location'%}">
+                                    <a href="#">
                                     <i class="fas fa-map-marker-alt"></i>Add Locations</a>
                                 </li>
 
                                  <li>
-                                <a href="{% url 'Llist'%}">
+                                <a href="#">
                                 <i class="far fa-check-square"></i>View Locations</a>
                                  </li>
 
@@ -220,7 +221,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="{% url 'logout'%}">
+                                                <a href="#">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -239,83 +240,39 @@
                     <div class="container-fluid">
                     <!---<div class="card">-->
                         <div class="table-responsive table--no-card m-b-30">
-                             <form action="{% url 'assets_to_xlsx'%}">
+                             <form action="#">
                              <button class="au-btn au-btn-icon au-btn--blue" type="submit"><i class="zmdi zmdi-plus">
 
                              </i>Export To EXCEL</button>
                             </form>
-                            <table class="table table-borderless table-striped table-earning">
+                            <table class="table table-borderless table-striped table-earning" id="myTable">
                         <thead>
                             <tr>
-                                <th>Buy date</th>
-                                <th>Name</th>
+                                <th>Date created</th>
+                                <th>Transaction type</th>
                                 <th>Description</th>
-                                <th>Type</th>
-                                <th>Barcode</th>
-                                <th>Serial</th>
-                                <th>Location</th>
-                                <th>Status</th>
-                                <th>Asset Manager</th>
-                                <th>Asset User</th>
-                                <th>Edit</th>
+                                <th>Amount</th>
+                                <th>Vendor/Client name</th>
+                                <th>transaction_date</th>
                             </tr>
                         </thead>
                         <tbody id="searchBody">
-                         {% for asset in assets %}
+                         {% for entry in entries %}
 
                         <tr>
-                            {% if asset.asset_is_rejected %}
-                            <td bgcolor="pink">{{ asset.acquisition_date }}</td>
-                            <td bgcolor="pink">{{ asset.asset_name }}</td>
-                            <td bgcolor="pink">{{ asset.description }}</td>
-                            <td bgcolor="pink">{{ asset.asset_type }}</td>
-                            <td bgcolor="pink">{{ asset.asset_barcode }}</td>
-                            <td bgcolor="pink">{{ asset.asset_serial_number }}</td>
-                            <td bgcolor="pink">{{ asset.asset_location }}</td>
-                            <td bgcolor="pink">{{ asset.asset_status }}</td>
-                            <td bgcolor="pink">{{ asset.asset_owner }}</td>
-                            <td bgcolor="pink">{{ asset.asset_user }}</td>
-                            <td ><a href="{% url 'modify' asset.asset_id %}">Edit</a></td>
-                            {% else %}
-                            <td>{{ asset.acquisition_date }}</td>
-                            <td>{{ asset.asset_name }}</td>
-                            <td>{{ asset.description }}</td>
-                            <td>{{ asset.asset_type }}</td>
-                            <td>{{ asset.asset_barcode }}</td>
-                            <td>{{ asset.asset_serial_number }}</td>
-                            <td>{{ asset.asset_location }}</td>
-                            <td>{{ asset.asset_status }}</td>
-                            <td>{{ asset.asset_owner }}</td>
-                            <td>{{ asset.asset_user }}</td>
-                            <td ><a href="{% url 'modify' asset.asset_id %}">Edit</a></td>
-                            {% endif %}
+                            <td bgcolor="pink">{{ entry.date_created }}</td>
+                            <td bgcolor="pink">{{ entry.transaction_type }}</td>
+                            <td bgcolor="pink">{{ entry.description }}</td>
+                            <td bgcolor="pink">{{ entry.amount }}</td>
+                            <td bgcolor="pink">{{ asset.name }}</td>
+                            <td bgcolor="pink">{{ asset.transaction_date }}</td>
+
                         </tr>
                         {% endfor %}
 
                             </table>
 
 
-                    {% if is_paginated %}
-                        <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-                    {% for i in paginator.page_range %}
-                    {% if page_obj.number == i %}
-                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                    {% else %}
-                    <li><a href="?page={{ i }}">{{ i }}</a></li>
-                    {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-                    {% else %}
-                    <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                    </ul>
-                    {% endif %}
                         </div>
                                 </div>
                             </div>
@@ -346,16 +303,17 @@
     <script src="{% static 'vendor/circle-progress/circle-progress.min.js' %}"></script>
     <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
     <script src="{% static 'vendor/chartjs/Chart.bundle.min.js' %}"></script>
-    <script src="{% static 'vendor/select2/select2.min.js' %}">
+    <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/data-tables/dataTables.js' %}">
     </script>
 
     <!-- Main JS-->
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/search.js' %}"></script>
-    <script src="{% static 'js/notifications.js' %}"></script>
-    <script src="{% static 'js/getname.js' %}"></script>
-
-
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
     
 
 </body>
