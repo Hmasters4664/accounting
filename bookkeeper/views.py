@@ -35,6 +35,9 @@ from django.core.files.base import ContentFile
 from django.core.exceptions import ValidationError
 from django.conf import settings
 import uuid
+from django.urls import reverse_lazy
+from .forms import BookForm
+from bootstrap_modal_forms.generic import BSModalCreateView
 from django.views.generic import TemplateView
 from django.db.models import Q
 from django_datatables_view.base_datatable_view import BaseDatatableView
@@ -48,13 +51,21 @@ class Main(TemplateView):
 
 class BookListJson(BaseDatatableView):
     model = Book
-    columns = ['date_created', 'transaction_type', 'description', 'amount', 'transaction_date', 'name']
+    columns = ['date_created', 'transaction_type', 'description', 'amount', 'name', 'transaction_date']
     order_columns = ['transaction_date', 'date_created',  'amount', 'transaction_type', 'description', 'name']
 
     def filter_queryset(self, qs):
-        sSearch = self.request.GET.get('sSearch', None)
+        sSearch = self.request.GET.get('search[value]', None)
         if sSearch:
+            print(sSearch)
             qs = qs.filter(Q(name__istartswith=sSearch) | Q(description__istartswith=sSearch))
         return qs
+
+
+class BookEntryView(BSModalCreateView):
+    template_name = 'form.html'
+    form_class = BookForm
+    success_message = 'Success: Book was created.'
+    success_url = reverse_lazy('index')
 
 

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'import_export',
+    'bootstrap_modal_forms',
     'organizations',
 ]
 

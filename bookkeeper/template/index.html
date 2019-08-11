@@ -49,6 +49,13 @@
 </head>
 
 <body class="animsition">
+                            <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                    </div>
+                                </div>
+                            </div>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -237,11 +244,11 @@
                     <div class="container-fluid">
                     <!---<div class="card">-->
                         <div class="table-responsive table--no-card m-b-30">
-                             <form action="#">
-                             <button class="au-btn au-btn-icon au-btn--blue" type="submit"><i class="zmdi zmdi-plus">
 
-                             </i>Export To EXCEL</button>
-                            </form>
+                             <button class="au-btn au-btn-icon au-btn--blue" type="button" id="create"><i class="zmdi zmdi-plus">
+                             </i>Add Entry</button>
+
+
                             <table class="table table-borderless table-striped table-earning" id="myTable">
                         <thead>
                             <tr>
@@ -298,6 +305,17 @@
     <!-- Main JS-->
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/datatbles.js' %}"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
+     <script type="text/javascript">
+                                $(document).ready(function() {
+
+                                $('#create').modalForm({
+                                formURL: "{% url 'create_book' %}"
+                            });
+
+                            });
+     </script>
 
     
 
