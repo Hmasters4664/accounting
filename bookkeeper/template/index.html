@@ -189,10 +189,7 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                                {% csrf_token %}
-                                <input class="au-input au-input--xl" type="text" id="txtSearch"  placeholder="Search for through table" />
-                                </button>
-                            <div class="header-button">
+                                 <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu" >
                                         <i class="zmdi zmdi-comment-more"></i>
@@ -256,19 +253,10 @@
                                 <th>transaction_date</th>
                             </tr>
                         </thead>
-                        <tbody id="searchBody">
-                         {% for entry in entries %}
-
+                        <tbody>
                         <tr>
-                            <td bgcolor="pink">{{ entry.date_created }}</td>
-                            <td bgcolor="pink">{{ entry.transaction_type }}</td>
-                            <td bgcolor="pink">{{ entry.description }}</td>
-                            <td bgcolor="pink">{{ entry.amount }}</td>
-                            <td bgcolor="pink">{{ asset.name }}</td>
-                            <td bgcolor="pink">{{ asset.transaction_date }}</td>
-
                         </tr>
-                        {% endfor %}
+
 
                             </table>
 
@@ -309,11 +297,8 @@
 
     <!-- Main JS-->
     <script src="{% static 'js/main.js' %}"></script>
-<script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
+    <script src="{% static 'js/datatbles.js' %}"></script>
+
     
 
 </body>

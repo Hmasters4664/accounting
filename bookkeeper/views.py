@@ -35,18 +35,15 @@ from django.core.files.base import ContentFile
 from django.core.exceptions import ValidationError
 from django.conf import settings
 import uuid
+from django.views.generic import TemplateView
 from django.db.models import Q
 from django_datatables_view.base_datatable_view import BaseDatatableView
 
 
-class main(ListView):
-    model = Book
+class Main(TemplateView):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
-    template_name= 'index.html'
-    context_object_name = 'entries'
-    paginate_by = 10
-    Book.objects.all()
+    template_name = 'index.html'
 
 
 class BookListJson(BaseDatatableView):
