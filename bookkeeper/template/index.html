@@ -39,6 +39,7 @@
 
     <script type="text/javascript">
         var USERS_LIST_JSON_URL = '{% url "BookList" %}';
+        var UPDATE_JSON_URL = '{% url "BookList" %}';
 
     </script>
 
@@ -252,6 +253,7 @@
                             <table class="table table-borderless table-striped table-earning" id="myTable">
                         <thead>
                             <tr>
+                                <th>Entry number</th>
                                 <th>Date created</th>
                                 <th>Transaction type</th>
                                 <th>Description</th>

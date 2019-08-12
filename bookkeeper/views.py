@@ -37,7 +37,7 @@ from django.conf import settings
 import uuid
 from django.urls import reverse_lazy
 from .forms import BookForm
-from bootstrap_modal_forms.generic import BSModalCreateView
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView
 from django.views.generic import TemplateView
 from django.db.models import Q
 from django_datatables_view.base_datatable_view import BaseDatatableView
@@ -51,8 +51,8 @@ class Main(TemplateView):
 
 class BookListJson(BaseDatatableView):
     model = Book
-    columns = ['date_created', 'transaction_type', 'description', 'amount', 'name', 'transaction_date']
-    order_columns = ['transaction_date', 'date_created',  'amount', 'transaction_type', 'description', 'name']
+    columns = ['id', 'date_created', 'transaction_type', 'description', 'amount', 'name', 'transaction_date']
+    order_columns = ['id', 'transaction_date', 'date_created',  'amount', 'transaction_type', 'description', 'name']
 
     def filter_queryset(self, qs):
         sSearch = self.request.GET.get('search[value]', None)
@@ -69,3 +69,9 @@ class BookEntryView(BSModalCreateView):
     success_url = reverse_lazy('index')
 
 
+class BookUpdateView(BSModalUpdateView):
+    model = Book
+    template_name = 'form.html'
+    form_class = BookForm
+    success_message = 'Success: Book was updated.'
+    success_url = reverse_lazy('index')
