@@ -50,6 +50,7 @@ class Main(TemplateView):
 
 
 class BookListJson(BaseDatatableView):
+    #et_initial_queryset(self): will modify this to get the objects from one organisation
     model = Book
     columns = ['id', 'date_created', 'transaction_type', 'description', 'amount', 'name', 'transaction_date']
     order_columns = ['id', 'transaction_date', 'date_created',  'amount', 'transaction_type', 'description', 'name']
